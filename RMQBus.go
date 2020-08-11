@@ -132,7 +132,7 @@ func (RMQ *RMQ) Publish(topic string, msg string) {
 			Body:        []byte(msg),
 		})
 	failOnError(err, "Failed to publish a message")
-	log.Printf(" [x] Sent To %s", topic)
+	//log.Printf(" [x] Sent To %s", topic)
 }
 func (RMQ *RMQ) InitFunctions(responderRegistry map[string]EventHandler, consumerRegistry map[string]EventHandler, globalConsumerRegsitry map[string]EventHandler) {
 	initCh, err := RMQ.Conn.Channel()
@@ -228,7 +228,7 @@ func (RMQ *RMQ) InitFunctions(responderRegistry map[string]EventHandler, consume
 
 			}
 		}()
-		fmt.Println(" [x] Responder Registerd for event :", topicName)
+		//fmt.Println(" [x] Responder Registerd for event :", topicName)
 	}
 	registerConumerFunctions(options, RMQ.Conn, consumerRegistry, false)
 	registerConumerFunctions(options, RMQ.Conn, globalConsumerRegsitry, true)
@@ -302,7 +302,7 @@ func registerConumerFunctions(options DefaultOptions, rmqcon *amqp.Connection, f
 				<-cbFunc
 			}
 		}()
-		fmt.Println(" [x] Consumer registered for event :", QueueName)
+		//fmt.Println(" [x] Consumer registered for event :", QueueName)
 	}
 }
 func (RMQ *RMQ) HandleQClose(done chan string) {
